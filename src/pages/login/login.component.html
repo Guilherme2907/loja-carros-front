@@ -4,13 +4,13 @@
       <h3>Aluguel de Carros</h3>
       <form>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email" name="email" />
+          <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="creds.email"/>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" placeholder="Senha" name="password" />
+          <input type="password" class="form-control" placeholder="Senha" name="password" [(ngModel)]="creds.password"/>
         </div>
         <div class="form-group">
-          <input type="submit" class="btnSubmit" value="Login" />
+          <input type="submit" class="btnSubmit" value="Login" (click)="login()"/>
         </div>
         <div class="form-group">
           <a href="#" class="ForgetPwd">Esqueceu a senha?</a>
