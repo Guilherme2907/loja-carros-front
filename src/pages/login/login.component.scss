@@ -6,21 +6,17 @@
         padding: 5%;
         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
         h3{
-            color: #333;
+            color: #0062cc;
         }
         form {
             padding: 10%;
             .form-group {
-                .btnSubmit {
+                .btn {
                     width: 50%;
-                    border-radius: 1rem;
-                    padding: 1.5%;
-                    border: none;
-                    cursor: pointer;
                     margin-top: 35px;
-                    font-weight: 600;
-                    color: #fff;
-                    background-color: #0062cc;
+                }
+                .btn-secondary {
+                    margin-top: 5px;
                 }
                 .ForgetPwd{
                     color: #0062cc;

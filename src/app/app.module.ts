@@ -8,6 +8,7 @@ import { Error404Component } from 'src/pages/error404/error404.component';
 import { LoginModule } from 'src/pages/login/login.module';
 import { HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { SignupModule } from 'src/pages/signup/signup.module';
 
 
 
@@ -24,7 +25,8 @@ import { CommonModule } from '@angular/common';
     LoginModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    SignupModule
   ],
   providers: [
   ],
