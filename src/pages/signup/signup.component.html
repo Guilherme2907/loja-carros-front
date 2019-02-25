@@ -5,30 +5,36 @@
       <div class="col">
         <label for="name">Nome</label>
         <input type="text" class="form-control" formControlName="name" placeholder="Nome">
+        <p  *ngIf="formGroup.controls.name.dirty && formGroup.controls.name.errors" margin-left>Nome obrigatório</p>
       </div>
       <div class="col">
         <label for="email">Email</label>
         <input type="text" class="form-control" formControlName="email" placeholder="Email">
+        <p  *ngIf="formGroup.controls.email.dirty && formGroup.controls.email.errors" margin-left>Email obrigatório</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="password">Senha</label>
-        <input type="text" class="form-control" formControlName="password" placeholder="Senha">
+        <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+        <p  *ngIf="formGroup.controls.password.dirty && formGroup.controls.password.errors" margin-left>Senha obrigatória</p>
       </div>
       <div class="col">
         <label for="cpf">CPF</label>
         <input type="text" class="form-control" formControlName="cpf" placeholder="CPF">
+        <p  *ngIf="formGroup.controls.cpf.dirty && formGroup.controls.cpf.errors" margin-left>CPF Obrigatório</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="street">Rua</label>
         <input type="text" class="form-control" formControlName="street" placeholder="Rua">
+        <p  *ngIf="formGroup.controls.street.dirty && formGroup.controls.street.errors" margin-left>Rua obrigatória</p>
       </div>
       <div class="col">
         <label for="number">Número</label>
         <input type="text" class="form-control" formControlName="number" placeholder="Número">
+        <p  *ngIf="formGroup.controls.number.dirty && formGroup.controls.number.errors" margin-left>Número obrigatório</p>
       </div>
     </div>
     <div class="row">
@@ -39,12 +45,14 @@
       <div class="col">
         <label for="neighborhood">Bairro</label>
         <input type="text" class="form-control" formControlName="neighborhood" placeholder="Bairro">
+        <p  *ngIf="formGroup.controls.neighborhood.dirty && formGroup.controls.neighborhood.errors" margin-left>Bairro obrigatório</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="cep">CEP</label>
         <input type="text" class="form-control" formControlName="cep" placeholder="CEP">
+        <p *ngIf="formGroup.controls.cep.dirty && formGroup.controls.cep.errors" margin-left>CEP obrigatório</p>
       </div>
       <div class="col">
         <label for="state">Estado</label>

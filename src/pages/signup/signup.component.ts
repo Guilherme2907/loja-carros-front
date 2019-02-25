@@ -5,6 +5,7 @@ import { CityService } from 'src/services/domain/city.service';
 import { StateDTO } from 'src/models/state.dto';
 import { CityDTO } from 'src/models/city.dto';
 import { UserService } from 'src/services/domain/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +28,7 @@ export class SignupComponent implements OnInit {
       street: ['Rua Via', [Validators.required]],
       number: ['25', [Validators.required]],
       complement: ['Apto 3', []],
-      neighborhood: ['Copacabana', []],
+      neighborhood: ['Copacabana', [Validators.required]],
       cep: ['10828333', [Validators.required]],
       telephone: ['977261827', [Validators.required]],
       stateId: [null, [Validators.required]],
@@ -54,8 +55,9 @@ export class SignupComponent implements OnInit {
 
   signupUser(){
     this.userService.saveUser(this.formGroup.value).subscribe(response => {
-      console.log('Salvo');
-    });
+      Swal.fire('Sucesso','Usuário cadastrado com sucesso','success');
+    },
+    error => {});
   }
 
 }

@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from 'src/pages/home/home.module';
 import { Error404Component } from 'src/pages/error404/error404.component';
 import { LoginModule } from 'src/pages/login/login.module';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { SignupModule } from 'src/pages/signup/signup.module';
-
+import { ErrorInterceptorProvider } from 'src/interceptors/interceptor-error';
 
 
 
@@ -27,6 +27,7 @@ import { SignupModule } from 'src/pages/signup/signup.module';
     SignupModule
   ],
   providers: [
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })
