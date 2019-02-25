@@ -41,7 +41,8 @@ export class SignupComponent implements OnInit {
       this.states = response;
       this.formGroup.controls.stateId.setValue(this.states[0].id);
       this.updateCities();
-    });
+    },
+    error => {});
   }
 
   updateCities(){
@@ -49,7 +50,8 @@ export class SignupComponent implements OnInit {
     this.cityService.findCitiesByState(state_id).subscribe(response => {
       this.cities = response;
       this.formGroup.controls.cityId.setValue(null);
-    });
+    },
+    error => {});
   }
 
 

@@ -17,13 +17,18 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.authService.refreshToken().subscribe(response => {
+      this.router.navigate(['home']);
+    },
+    error => {})
   }
 
   login() {
     this.authService.authenticate(this.creds).subscribe(response => {
       this.authService.successfulAuth(response.headers.get("Authorization"));
       this.router.navigate(['home']);
-    })
+    },
+    error => {})
   }
 
   signUp() {

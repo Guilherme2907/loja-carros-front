@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { SignupModule } from 'src/pages/signup/signup.module';
 import { ErrorInterceptorProvider } from 'src/interceptors/interceptor-error';
+import { AuthInterceptorProvider } from 'src/interceptors/interceptor-auth';
 
 
 
@@ -27,6 +28,7 @@ import { ErrorInterceptorProvider } from 'src/interceptors/interceptor-error';
     SignupModule
   ],
   providers: [
+    AuthInterceptorProvider,
     ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]

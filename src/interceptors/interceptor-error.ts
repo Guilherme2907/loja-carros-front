@@ -35,11 +35,18 @@ export class ErrorInterceptor implements HttpInterceptor {
                             case 422:
                                 this.handlerError422(errorObj);
                                 break;
+
+                            default:
+                                this.handlerDefaultError();
                         }
                         return Observable.throw(errorObj);
                     }
                 ),
             );
+    }
+
+    handlerDefaultError() {       
+        Swal.fire('Ops...','Algum erro inesperado ocorreu','error');
     }
 
     handlerError401() {
