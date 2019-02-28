@@ -13,6 +13,7 @@ import { AuthInterceptorProvider } from 'src/interceptors/interceptor-auth';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,7 @@ import { AuthInterceptorProvider } from 'src/interceptors/interceptor-auth';
     LoginModule,
     HttpClientModule,
     CommonModule,
-    SignupModule
+    SignupModule,
   ],
   providers: [
     AuthInterceptorProvider,

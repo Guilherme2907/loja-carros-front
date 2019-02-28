@@ -1,9 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpHandler, HttpEvent, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import Swal from 'sweetalert2';
-import { FieldError } from 'src/models/field_error';
 import { StorageService } from 'src/services/storage.service';
 import { API_CONFIG } from 'src/config/api.config';
 

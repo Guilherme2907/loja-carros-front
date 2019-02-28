@@ -1,14 +1,28 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-  </li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/home">Loja-Carros</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="form-inline my-2 my-lg-0">
+      <input [(ngModel)]="search" class="form-control mr-sm-2" name="search" type="search" placeholder="Search"
+        aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchCar()">Buscar</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="card col-md-3 offset-md-1" style="width: 18rem;" *ngFor="let car of cars">
+      <img src={{car.image}} class="card-img-top" alt="...">
+      <div class="card-body">
+        <h3 class="card-title">{{car.model}}</h3>
+        <h5>Preço: {{car.price | currency}}</h5>
+        <button class="btn btn-primary">Detalhes do Carro</button>
+      </div>
+    </div>
+  </div>
+</div>

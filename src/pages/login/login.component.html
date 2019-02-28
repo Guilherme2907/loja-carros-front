@@ -4,12 +4,12 @@
       <h3>Aluguel de Carros</h3>
       <form>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="creds.email" required #email="ngModel"/>
-          <div *ngIf="!email.valid && email.touched" class="alert alert-danger" role="alert">Email Obrigatório</div>
+          <input type="text" class="form-control" placeholder="Email"  id="email" name="email" [(ngModel)]="creds.email" required #email="ngModel"/>
+          <div *ngIf="!email.valid && email.touched" class="alert-danger" role="alert">Email Obrigatório</div>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" placeholder="Senha" name="password" [(ngModel)]="creds.password" required #password="ngModel"/>
-          <div *ngIf="!password.valid && password.touched" class="alert alert-danger" role="alert">Senha Obrigatória</div>
+          <input type="password" class="form-control" placeholder="Senha" id="password" name="password" [(ngModel)]="creds.password" required #password="ngModel"/>
+          <div *ngIf="!password.valid && password.touched" class="alert-danger" role="alert">Senha Obrigatória</div>
         </div>
         <div class="form-group">
           <button class="btn btn-primary" type="submit" (click)="login()">Entrar</button>

@@ -4,59 +4,59 @@
     <div class="row">
       <div class="col">
         <label for="name">Nome</label>
-        <input type="text" class="form-control" formControlName="name" placeholder="Nome">
+        <input type="text" class="form-control" formControlName="name" placeholder="Nome" id='name'>
         <p  *ngIf="formGroup.controls.name.dirty && formGroup.controls.name.errors" margin-left>Nome obrigatório</p>
       </div>
       <div class="col">
         <label for="email">Email</label>
-        <input type="text" class="form-control" formControlName="email" placeholder="Email">
+        <input type="text" class="form-control" formControlName="email" placeholder="Email" id='email'>
         <p  *ngIf="formGroup.controls.email.dirty && formGroup.controls.email.errors" margin-left>Email obrigatório</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="password">Senha</label>
-        <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+        <input type="password" class="form-control" formControlName="password" placeholder="Senha" id='password'>
         <p  *ngIf="formGroup.controls.password.dirty && formGroup.controls.password.errors" margin-left>Senha obrigatória</p>
       </div>
       <div class="col">
         <label for="cpf">CPF</label>
-        <input type="text" class="form-control" formControlName="cpf" placeholder="CPF">
+        <input type="text" class="form-control" formControlName="cpf" placeholder="CPF" id='cpf'>
         <p  *ngIf="formGroup.controls.cpf.dirty && formGroup.controls.cpf.errors" margin-left>CPF Obrigatório</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="street">Rua</label>
-        <input type="text" class="form-control" formControlName="street" placeholder="Rua">
+        <input type="text" class="form-control" formControlName="street" placeholder="Rua" id='street'>
         <p  *ngIf="formGroup.controls.street.dirty && formGroup.controls.street.errors" margin-left>Rua obrigatória</p>
       </div>
       <div class="col">
         <label for="number">Número</label>
-        <input type="text" class="form-control" formControlName="number" placeholder="Número">
+        <input type="text" class="form-control" formControlName="number" placeholder="Número" id='number'>
         <p  *ngIf="formGroup.controls.number.dirty && formGroup.controls.number.errors" margin-left>Número obrigatório</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="complement">Complemento</label>
-        <input type="text" class="form-control" formControlName="complement" placeholder="Complemento">
+        <input type="text" class="form-control" formControlName="complement" placeholder="Complemento" id='complement'>
       </div>
       <div class="col">
         <label for="neighborhood">Bairro</label>
-        <input type="text" class="form-control" formControlName="neighborhood" placeholder="Bairro">
+        <input type="text" class="form-control" formControlName="neighborhood" placeholder="Bairro" id='neighborhood'>
         <p  *ngIf="formGroup.controls.neighborhood.dirty && formGroup.controls.neighborhood.errors" margin-left>Bairro obrigatório</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="cep">CEP</label>
-        <input type="text" class="form-control" formControlName="cep" placeholder="CEP">
+        <input type="text" class="form-control" formControlName="cep" placeholder="CEP" id='cep'>
         <p *ngIf="formGroup.controls.cep.dirty && formGroup.controls.cep.errors" margin-left>CEP obrigatório</p>
       </div>
       <div class="col">
         <label for="state">Estado</label>
-        <select class="form-control" formControlName="stateId" (change)="updateCities()" id="exampleFormControlSelect1">
+        <select class="form-control" formControlName="stateId" (change)="updateCities()">
           <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
         </select>
       </div>
@@ -64,13 +64,14 @@
     <div class="row">
       <div class="col">
         <label for="city">Cidade</label>
-        <select class="form-control" formControlName="cityId" id="exampleFormControlSelect1">
+        <select class="form-control" formControlName="cityId">
           <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
         </select>
       </div>
       <div class="col">
         <label for="telephone">Telefone</label>
-        <input type="text" class="form-control" formControlName="telephone" placeholder="Telefone">
+        <input type="text" class="form-control" formControlName="telephone" placeholder="Telefone" id='telephone'>
+        <p *ngIf="formGroup.controls.telephone.dirty && formGroup.controls.telephone.errors" margin-left>Telefone obrigatório</p>
       </div>
     </div>
 

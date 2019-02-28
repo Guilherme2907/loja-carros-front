@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authService.refreshToken().subscribe(response => {
+      this.authService.successfulAuth(response.headers.get("Authorization"));
       this.router.navigate(['home']);
     },
     error => {})
