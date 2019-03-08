@@ -19,8 +19,13 @@ export class CarService {
         return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars`);
     }
 
-    FindAllPage(search: string,pages:number,elementsPerPage:number): Observable<CarDTO[]> {
-        return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars/page/?brand=${search}&pages=${pages}&elementsPerPage=${elementsPerPage}`);
+    FindAllPage(search: string, pages: number, elementsPerPage: number): Observable<CarDTO[]> {
+        return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars/page/?pages=${pages}&elementsPerPage=${elementsPerPage}`);
+    }
+
+    searchCars(brand: string, year: string, type: string, pages: number, elementsPerPage: number): Observable<CarDTO[]> {
+        return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars/search/?pages=${pages}&elementsPerPage=${elementsPerPage}
+        &brand=${brand}&year=${year}&vehicleType=${type}`);
     }
 
 }

@@ -1,11 +1,22 @@
-.navbar{
+.navbar {
     margin-bottom: 30px;
 }
 
-.card {
-    padding: 10px;
+.left {
+    float: left;
+    .search {
+        margin-top: 10px;
+    }
 }
 
-.card-body {
-    text-align: center;
+.right {
+    float: right;
+    .car {
+        margin-right: 80px;
+        margin-bottom: 20px;
+        padding: 10px;
+        .card-body {
+            text-align: center;
+        }
+    }
 }

@@ -7,16 +7,55 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <form class="form-inline my-2 my-lg-0">
-      <input [(ngModel)]="search" class="form-control mr-sm-2" name="search" type="search" placeholder="Search"
+      <input [(ngModel)]="search" class="form-control mr-sm-2" name="search" type="search" placeholder="Buscar..."
         aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchCar()">Buscar</button>
     </form>
   </div>
 </nav>
 
-<div class="container">
+
+<div class="col-md-2 left">
   <div class="row">
-    <div class="card col-md-3 offset-md-1" style="width: 18rem;" *ngFor="let car of cars">
+    <form #form="ngForm">
+      <div class="card">
+        <div class="card-header">Marca</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let brand of brands | unique">
+            {{brand}}
+            <label name="brand" class="checkbox">
+              <input name="b{{brand}}" type="checkbox" ngModel />
+            </label>
+          </li>
+        </ul>
+        <div class="card-header">Tipo do Veículo</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let type of vehicleTypes | unique">
+            {{type}}
+            <label class="checkbox">
+              <input name="t{{type}}" type="checkbox" ngModel />
+            </label>
+          </li>
+        </ul>
+        <div class="card-header">Ano</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let year of years | unique">
+            {{year}}
+            <label class="checkbox">
+              <input name="y{{year}}" type="checkbox" ngModel />
+            </label>
+          </li>
+        </ul>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block search" (click)="filterCars(form)">Buscar
+        Carros</button>
+    </form>
+  </div>
+</div>
+
+<div class="col-md-10 right">
+  <div class="row">
+    <div class="card col-md-3 car" style="width: 18rem;" *ngFor="let car of cars">
       <img src={{car.image}} class="card-img-top" alt="...">
       <div class="card-body">
         <h3 class="card-title">{{car.model}}</h3>
