@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CarDTO } from 'src/models/car.dto';
 import { CarService } from 'src/services/domain/car.service';
 import { FormGroup } from '@angular/forms';
+import { StorageService } from 'src/services/storage.service';
+import { UserService } from 'src/services/domain/user.service';
 
 @Component({
   selector: 'app-home',
@@ -15,16 +17,18 @@ export class HomeComponent implements OnInit {
   years: string[] = [];
   brands: string[] = [];
   search: string = "";
+  profiles: string[] = [];
   pages: number = 0;
   elementsPerPage = 10;
 
 
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService, private storageService: StorageService, private userService: UserService) { }
 
   ngOnInit() {
     this.carService.FindAllCars().subscribe(response => {
       this.cars = response;
       this.fillInCarData(this.cars);
+      this.findUserByEmail();
     },
       error => { });
   }
@@ -61,6 +65,15 @@ export class HomeComponent implements OnInit {
     this.carService.searchCars(brands, years, types, this.pages, this.elementsPerPage).subscribe(response => {
       this.cars = response['content'];
     },
-    error => {});
+      error => { });
+  }
+
+  findUserByEmail() {
+    let user = this.storageService.getLocalUser();
+    this.userService.findByEmail(user.email).subscribe(response => {
+      this.profiles = response['profiles'];
+      console.log(this.profiles);
+    },
+    error => { });
   }
 }

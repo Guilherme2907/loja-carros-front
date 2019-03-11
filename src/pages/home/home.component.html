@@ -58,9 +58,12 @@
     <div class="card col-md-3 car" style="width: 18rem;" *ngFor="let car of cars">
       <img src={{car.image}} class="card-img-top" alt="...">
       <div class="card-body">
-        <h3 class="card-title">{{car.model}}</h3>
-        <h5>Preço: {{car.price | currency}}</h5>
-        <button class="btn btn-primary">Detalhes do Carro</button>
+        <h2 class="card-title">{{car.model}}</h2>
+        <h4>Preço: {{car.price | currency}}</h4>
+        <h5>Marca: {{car.brand}}</h5>
+        <h5>Tipo: {{car.vehicleType}}</h5>
+        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-warning btn-sm mr-3">Atualizar</button>
+        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-danger btn-sm">Deletar</button>
       </div>
     </div>
   </div>

@@ -12,6 +12,10 @@ export class UserService {
 
   }
 
+  findByEmail(email:String): any{
+    return this.http.get(`${API_CONFIG.baseUrl}/users/email?value=${email}`);
+  }
+
   saveUser(user: any) {
     return this.http.post(`${API_CONFIG.baseUrl}/users`,user,
       {

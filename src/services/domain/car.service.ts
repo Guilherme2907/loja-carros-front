@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CityDTO } from 'src/models/city.dto';
 import { API_CONFIG } from 'src/config/api.config';
 import { CarDTO } from 'src/models/car.dto';
 
