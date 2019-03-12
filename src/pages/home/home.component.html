@@ -63,7 +63,7 @@
         <h5>Marca: {{car.brand}}</h5>
         <h5>Tipo: {{car.vehicleType}}</h5>
         <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-warning btn-sm mr-3">Atualizar</button>
-        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-danger btn-sm">Deletar</button>
+        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-danger btn-sm" (click)="deleteCar(car.id)">Deletar</button>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_CONFIG } from 'src/config/api.config';
@@ -14,6 +14,8 @@ export class CarService {
 
     }
 
+
+
     FindAllCars(): Observable<CarDTO[]> {
         return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars`);
     }
@@ -27,4 +29,13 @@ export class CarService {
         &brand=${brand}&year=${year}&vehicleType=${type}`);
     }
 
+    deleteCar(id: string): Observable<{}> {
+        return this.http.delete(`${API_CONFIG.baseUrl}/cars/${id}`, httpOptions);
+    }
 }
+
+const httpOptions = {
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+    })
+};

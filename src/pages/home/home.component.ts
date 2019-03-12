@@ -4,6 +4,7 @@ import { CarService } from 'src/services/domain/car.service';
 import { FormGroup } from '@angular/forms';
 import { StorageService } from 'src/services/storage.service';
 import { UserService } from 'src/services/domain/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.carService.FindAllCars().subscribe(response => {
       this.cars = response;
       this.fillInCarData(this.cars);
-      this.findUserByEmail();
+      this.getUserProfiles();
     },
       error => { });
   }
@@ -46,6 +47,14 @@ export class HomeComponent implements OnInit {
       this.years[i] = cars[i].year;
       this.brands[i] = cars[i].brand;
     }
+  }
+
+  getUserProfiles() {
+    let user = this.storageService.getLocalUser();
+    this.userService.findByEmail(user.email).subscribe(response => {
+      this.profiles = response['profiles'];
+    },
+      error => { });
   }
 
   filterCars(form: any | FormGroup) {
@@ -68,12 +77,28 @@ export class HomeComponent implements OnInit {
       error => { });
   }
 
-  findUserByEmail() {
-    let user = this.storageService.getLocalUser();
-    this.userService.findByEmail(user.email).subscribe(response => {
-      this.profiles = response['profiles'];
-      console.log(this.profiles);
-    },
-    error => { });
+  deleteCar(id: string) {
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: "Tem certeza que deseja deletar esse carro?",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim,deletar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.carService.deleteCar(id).subscribe(response => {
+          Swal.fire(
+            'Deletado!',
+            'Carro deletado com sucesso',
+            'success'
+          )
+          this.ngOnInit();
+        },
+          error => { });
+      }
+    })
   }
 }
