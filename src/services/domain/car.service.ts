@@ -14,19 +14,25 @@ export class CarService {
 
     }
 
+    findCarById(id: string): Observable<CarDTO> {
+        return this.http.get<CarDTO>(`${API_CONFIG.baseUrl}/cars/${id}`);
+    }
 
-
-    FindAllCars(): Observable<CarDTO[]> {
+    findAllCars(): Observable<CarDTO[]> {
         return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars`);
     }
 
-    FindAllPage(search: string, pages: number, elementsPerPage: number): Observable<CarDTO[]> {
+    findAllPage(search: string, pages: number, elementsPerPage: number): Observable<CarDTO[]> {
         return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars/page/?pages=${pages}&elementsPerPage=${elementsPerPage}`);
     }
 
     searchCars(brand: string, year: string, type: string, pages: number, elementsPerPage: number): Observable<CarDTO[]> {
         return this.http.get<CarDTO[]>(`${API_CONFIG.baseUrl}/cars/search/?pages=${pages}&elementsPerPage=${elementsPerPage}
         &brand=${brand}&year=${year}&vehicleType=${type}`);
+    }
+
+    updateCar(car: CarDTO, id: string): Observable<{}> {
+        return this.http.put(`${API_CONFIG.baseUrl}/cars/${id}`, car);
     }
 
     deleteCar(id: string): Observable<{}> {

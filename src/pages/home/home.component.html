@@ -62,9 +62,70 @@
         <h4>Preço: {{car.price | currency}}</h4>
         <h5>Marca: {{car.brand}}</h5>
         <h5>Tipo: {{car.vehicleType}}</h5>
-        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-warning btn-sm mr-3">Atualizar</button>
-        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-danger btn-sm" (click)="deleteCar(car.id)">Deletar</button>
+        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-warning btn-sm mr-3"
+          (click)="open(modalUpdate,car.id)">Atualizar</button>
+        <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-danger btn-sm"
+          (click)="deleteCar(car.id)">Deletar</button>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #modalUpdate let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Atualizar Carro</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="update-form">
+      <div class="form-group">
+        <label for="model">Modelo</label>
+        <input type="text" class="form-control" [(ngModel)]="car.model" id='model' name='model' required
+          #model="ngModel">
+        <p *ngIf="!model.valid && model.touched" role="alert">Modelo Obrigatório</p>
+      </div>
+
+      <div class="form-group">
+        <label for="brand">Marca</label>
+        <input type="text" class="form-control" [(ngModel)]="car.brand" id='brand' name='brand' required
+          #brand="ngModel">
+        <p *ngIf="!brand.valid && brand.touched" role="alert">Marca Obrigatória</p>
+      </div>
+
+
+      <div class="form-group">
+        <label for="price">Preço</label>
+        <input type="text" class="form-control" [(ngModel)]="car.price" id='price' name='price' required
+          #price="ngModel">
+        <p *ngIf="!price.valid && price.touched" role="alert">Marca Obrigatória</p>
+      </div>
+
+
+      <div class="form-group">
+        <label for="vehicleType">Tipo</label>
+        <input type="text" class="form-control" [(ngModel)]="car.vehicleType" id='vehicleType' name='vehicleType'
+          required #type="ngModel">
+        <p *ngIf="!type.valid && type.touched" role="alert">Tipo Obrigatória</p>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleType">Ano</label>
+        <input type="text" class="form-control" [(ngModel)]="car.year" id='year' name='year' required #year="ngModel">
+        <p *ngIf="!year.valid && year.touched" role="alert">Ano Obrigatória</p>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Imagem</label>
+        <input type="text" class="form-control" [(ngModel)]="car.image" id='image' name='image' required
+          #image="ngModel">
+        <p *ngIf="!image.valid && image.touched" role="alert">Imagem Obrigatória</p>
+        <img src="{{car.image}}" alt="Car Image">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="updateCar()">Salvar</button>
+  </div>
+</ng-template>

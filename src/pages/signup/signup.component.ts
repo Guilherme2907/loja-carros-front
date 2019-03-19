@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit {
 
   signupUser(){
     this.userService.saveUser(this.formGroup.value).subscribe(response => {
-      Swal.fire('Sucesso','Usuário cadastrado com sucesso','success');
+      Swal.fire('','Usuário cadastrado com sucesso','success');
     },
     error => {});
   }

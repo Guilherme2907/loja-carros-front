@@ -5,15 +5,18 @@ import { FormGroup } from '@angular/forms';
 import { StorageService } from 'src/services/storage.service';
 import { UserService } from 'src/services/domain/user.service';
 import Swal from 'sweetalert2';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
   cars: CarDTO[];
+  formGroup: FormGroup;
+  car: CarDTO;
   vehicleTypes: string[] = [];
   years: string[] = [];
   brands: string[] = [];
@@ -23,10 +26,13 @@ export class HomeComponent implements OnInit {
   elementsPerPage = 10;
 
 
-  constructor(private carService: CarService, private storageService: StorageService, private userService: UserService) { }
+
+  constructor(private carService: CarService, private storageService: StorageService, private userService: UserService,
+    private modalService: NgbModal) {
+  }
 
   ngOnInit() {
-    this.carService.FindAllCars().subscribe(response => {
+    this.carService.findAllCars().subscribe(response => {
       this.cars = response;
       this.fillInCarData(this.cars);
       this.getUserProfiles();
@@ -35,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchCar() {
-    this.carService.FindAllPage(this.search, this.pages, this.elementsPerPage).subscribe(response => {
+    this.carService.findAllPage(this.search, this.pages, this.elementsPerPage).subscribe(response => {
       this.cars = response['content'];
     },
       error => { });
@@ -100,5 +106,22 @@ export class HomeComponent implements OnInit {
           error => { });
       }
     })
+  }
+
+  open(modalUpdate, id) {
+    this.modalService.open(modalUpdate);
+    this.carService.findCarById(id).subscribe(response => {
+      this.car = response;
+    });
+  }
+
+
+  updateCar() {
+    this.carService.updateCar(this.car, this.car.id).subscribe(response => {
+      this.ngOnInit();
+      this.modalService.dismissAll();
+      Swal.fire('','Carro atualizado com sucesso','success');
+    },
+      error => { });
   }
 }
