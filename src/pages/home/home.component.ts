@@ -108,10 +108,26 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  open(modalUpdate, id) {
-    this.modalService.open(modalUpdate);
+  save(modal) {
+    this.car = this.carService.createOrClearCar();
+    this.modalService.open(modal);
+  }
+
+  saveCar(){
+    this.carService.saveCar(this.car).subscribe(response => {
+      this.modalService.dismissAll();
+      this.ngOnInit();
+      Swal.fire('', 'Carro cadastrado com sucesso', 'success');
+    });
+  }
+
+
+
+  update(modal, id) {
+    this.modalService.open(modal);
     this.carService.findCarById(id).subscribe(response => {
       this.car = response;
+      console.log(this.car.id);
     });
   }
 
@@ -120,7 +136,7 @@ export class HomeComponent implements OnInit {
     this.carService.updateCar(this.car, this.car.id).subscribe(response => {
       this.ngOnInit();
       this.modalService.dismissAll();
-      Swal.fire('','Carro atualizado com sucesso','success');
+      Swal.fire('', 'Carro atualizado com sucesso', 'success');
     },
       error => { });
   }

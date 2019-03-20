@@ -14,6 +14,15 @@ export class CarService {
 
     }
 
+    saveCar(car: CarDTO) {
+        return this.http.post(`${API_CONFIG.baseUrl}/cars`, car,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        )
+    }
+
     findCarById(id: string): Observable<CarDTO> {
         return this.http.get<CarDTO>(`${API_CONFIG.baseUrl}/cars/${id}`);
     }
@@ -37,6 +46,11 @@ export class CarService {
 
     deleteCar(id: string): Observable<{}> {
         return this.http.delete(`${API_CONFIG.baseUrl}/cars/${id}`, httpOptions);
+    }
+
+    createOrClearCar(): CarDTO {
+        let car: CarDTO = { id: "", vehicleType: "", brand: "", model: "", year: "", price: 0, image: "" };
+        return car;
     }
 }
 

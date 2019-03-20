@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     HomeComponent,
-    UniquePipe
+    UniquePipe,
   ],
   imports: [
     CommonModule,

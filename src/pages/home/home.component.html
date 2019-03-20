@@ -9,7 +9,9 @@
     <form class="form-inline my-2 my-lg-0">
       <input [(ngModel)]="search" class="form-control mr-sm-2" name="search" type="search" placeholder="Buscar..."
         aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchCar()">Buscar</button>
+      <button class="search btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchCar()">Buscar</button>
+      <button class="save btn btn-outline-success ml-2 my-sm-0" type="submit" *ngIf="profiles.indexOf('ADMIN') != -1" 
+      (click)="save(modalFormCar)">Cadastrar Novo carro</button>
     </form>
   </div>
 </nav>
@@ -63,7 +65,7 @@
         <h5>Marca: {{car.brand}}</h5>
         <h5>Tipo: {{car.vehicleType}}</h5>
         <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-warning btn-sm mr-3"
-          (click)="open(modalUpdate,car.id)">Atualizar</button>
+          (click)="update(modalFormCar,car.id)">Atualizar</button>
         <button type="button" *ngIf="profiles.indexOf('ADMIN') != -1" class="btn btn-danger btn-sm"
           (click)="deleteCar(car.id)">Deletar</button>
       </div>
@@ -71,7 +73,8 @@
   </div>
 </div>
 
-<ng-template #modalUpdate let-c="close" let-d="dismiss">
+<ng-template #modalFormCar let-c="close" let-d="dismiss">
+  <input type="text" hidden value="{{car.id}}">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Atualizar Carro</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -126,6 +129,8 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="updateCar()">Salvar</button>
+      <button type="button" class="btn btn-outline-dark" *ngIf="car.id != ''" (click)="updateCar()">Atualizar</button>
+    <button type="button" class="btn btn-outline-dark" *ngIf="car.id == ''" (click)="saveCar()">Salvar</button>
   </div>
 </ng-template>
+
